@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "animals")
-public class Animal {
+public class Animal extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long animalid;

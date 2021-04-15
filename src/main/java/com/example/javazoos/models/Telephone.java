@@ -1,5 +1,7 @@
 package com.example.javazoos.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,12 +17,18 @@ public class Telephone {
     @Column(nullable = false)
     private String phonenumber;
 
+    @ManyToOne
+    @JoinColumn(name = "zoo", nullable = false)
+    @JsonIgnoreProperties(value = "telephones", allowSetters = true)
+    private Zoo zoo;
+
     public Telephone() {
     }
 
-    public Telephone(String phonetype, String phonenumber) {
+    public Telephone(String phonetype, String phonenumber, Zoo zoo) {
         this.phonetype = phonetype;
         this.phonenumber = phonenumber;
+        this.zoo = zoo;
     }
 
     public long getPhoneid() {
@@ -45,5 +53,13 @@ public class Telephone {
 
     public void setPhonenumber(String phonenumber) {
         this.phonenumber = phonenumber;
+    }
+
+    public Zoo getZoo() {
+        return zoo;
+    }
+
+    public void setZoo(Zoo zoo) {
+        this.zoo = zoo;
     }
 }

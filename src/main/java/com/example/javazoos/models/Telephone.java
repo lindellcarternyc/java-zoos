@@ -17,18 +17,15 @@ public class Telephone extends Auditable {
     @Column(nullable = false)
     private String phonenumber;
 
-    @ManyToOne
-    @JoinColumn(name = "zoo", nullable = false)
-    @JsonIgnoreProperties(value = "telephones", allowSetters = true)
-    private Zoo zoo;
+    private long zooid;
 
     public Telephone() {
     }
 
-    public Telephone(String phonetype, String phonenumber, Zoo zoo) {
+    public Telephone(String phonetype, String phonenumber, long zooid) {
         this.phonetype = phonetype;
         this.phonenumber = phonenumber;
-        this.zoo = zoo;
+        this.zooid = zooid;
     }
 
     public long getPhoneid() {
@@ -55,11 +52,11 @@ public class Telephone extends Auditable {
         this.phonenumber = phonenumber;
     }
 
-    public Zoo getZoo() {
-        return zoo;
+    public long getZooid() {
+        return zooid;
     }
 
-    public void setZoo(Zoo zoo) {
-        this.zoo = zoo;
+    public void setZooid(long zooid) {
+        this.zooid = zooid;
     }
 }

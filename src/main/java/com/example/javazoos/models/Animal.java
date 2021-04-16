@@ -1,6 +1,10 @@
 package com.example.javazoos.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "animals")
@@ -12,6 +16,10 @@ public class Animal extends Auditable {
     @Column(nullable = false,
             unique = true)
     private String animaltype;
+
+    @OneToMany(mappedBy = "animal", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties(value = "animal", allowSetters = true)
+    private Set<ZooAnimals> zoos = new HashSet<>();
 
     public Animal() {
     }
@@ -34,5 +42,13 @@ public class Animal extends Auditable {
 
     public void setAnimaltype(String animaltype) {
         this.animaltype = animaltype;
+    }
+
+    public Set<ZooAnimals> getZoos() {
+        return zoos;
+    }
+
+    public void setZoos(Set<ZooAnimals> zoos) {
+        this.zoos = zoos;
     }
 }

@@ -17,7 +17,7 @@ public class Zoo extends Auditable {
             unique = true)
     private String zooname;
 
-    @OneToMany(
+    @OneToMany(mappedBy = "zooid",
         cascade = CascadeType.ALL,
         orphanRemoval = true)
     @JsonIgnoreProperties(value = "zoo", allowSetters = true)

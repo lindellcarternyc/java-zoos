@@ -20,13 +20,13 @@ public class Zoo extends Auditable {
     private String zooname;
 
     @OneToMany(mappedBy = "zooid",
-        cascade = CascadeType.ALL,
+        cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
         orphanRemoval = true)
     @JsonIgnoreProperties(value = "zoo", allowSetters = true)
     private List<Telephone> telephones = new ArrayList<>();
 
     @OneToMany(mappedBy = "zoo",
-        cascade = CascadeType.ALL,
+        cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
         orphanRemoval = true)
     @JsonIgnoreProperties(value = "zoo", allowSetters = true)
     private Set<ZooAnimals> animals = new HashSet<>();

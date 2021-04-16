@@ -7,4 +7,5 @@ import java.util.List;
 public interface ZoosService {
     List<Zoo> findAllZoos();
     Zoo findZooById(long id);
+    Zoo save(Zoo zoo);
 }
